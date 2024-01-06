@@ -50,3 +50,40 @@ function set_scripts()
 
 };
 add_action('wp_enqueue_scripts', 'set_scripts');
+
+// 메뉴
+function custom_menu()
+{
+    register_nav_menus(
+        array(
+            'primary-menu'   => __('Primary Menu', 'monami'),
+        )
+    );
+}
+add_action('init', 'custom_menu');
+
+
+// 로고
+function monami_customize_register( $wp_customize ) {
+    // 로고 설정 추가
+    $wp_customize->add_setting('monami_logo', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    // 로고 컨트롤 추가
+    $wp_customize->add_control(new WP_Customize_Image_Control(
+        $wp_customize,
+        'monami_logo',
+        array(
+            'label' => __('Header Logo', 'monami'),
+            'section' => 'title_tagline', // 기본 제목 및 태그라인 섹션에 추가
+            'settings' => 'monami_logo',
+        )
+    ));
+}
+
+add_action('customize_register', 'monami_customize_register');
+
+// page 요약문
+add_post_type_support( 'page', 'excerpt' );

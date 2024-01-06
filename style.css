@@ -37,10 +37,29 @@ header .logo .siteLogo{
    width: 90px;
    height: 90px;
    border: solid 5px white;
+
+   cursor: pointer;
 }
 
 header .logo .siteLogo svg path{
    fill: white;
+}
+
+header .logo .siteTitle a{
+   color: white;
+   text-decoration: none;
+}
+
+header .menu{
+   list-style: none;
+   display: flex;
+   justify-content: space-around;
+   width: 20vw;
+}
+
+header .menu li a{
+   color: white;
+   text-decoration: none;
 }
 
 section{
@@ -102,4 +121,25 @@ section#homeSection .container p{
    stroke-width: 4;
    stroke: rgba(255, 255, 255, 0.488);
    fill: rgba(255, 255, 255, 0.488);
+}
+
+
+section#introSection{
+   color: white;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+section#introSection .mypicture{
+   background-image: url('./img/myself.png');
+   background-size: cover;
+   width: 300px;
+   height: 300px;
+}
+
+section#projectSection{
+   background-color: white;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
 }
