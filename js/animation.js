@@ -12,17 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const wave1 = document.querySelector("#wave1");
   const wave2 = document.querySelector("#wave2");
-  const width = document.documentElement.clientWidth;
+  const width = document.documentElement.clientWidth+50;
   const segments = 100;
   const interval = width / segments;
-  const amplitude = 20; // 물결의 진폭
+  const amplitude = 40; // 물결의 진폭
   const wavelengthFactor = 0.05; // 파장 길이 조정 계수
-  const animationSpeed = 2; // 애니메이션 속도 조정 (초 단위)
+  const animationSpeed = 1; // 애니메이션 속도 조정 (초 단위)
 
   let points1 = [], points2 = [];
   for (let i = 0; i <= segments; i++) {
-      points1.push({ x: i * interval, y: 50 });
-      points2.push({ x: i * interval, y: 50 }); // 두 번째 선의 포인트도 동일하게 설정
+      points1.push({ x: i * interval, y: -30 });
+      points2.push({ x: i * interval, y: -30 }); // 두 번째 선의 포인트도 동일하게 설정
   }
   
   function updatePolyline() {
@@ -46,6 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   animateWave(points1, 1, '+'); // 첫 번째 선
-  animateWave(points2, 1.2, '-'); // 두 번째 선 (지연 시간과 방향을 달리함)
+  animateWave(points2, 1.5, '-'); // 두 번째 선 (지연 시간과 방향을 달리함)
 
 });
