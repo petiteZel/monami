@@ -48,16 +48,15 @@ section{
    width: 100vw;
 }
 
-section.homeSection{
+section#homeSection{
    background-image: url('./img/blackSea.jpg');
    background-size: cover;
    background-repeat: repeat-x;
 
-   /* background-color: rgba(255, 255, 255, 0.488); */
    padding-top: 15vh;
 }
 
-section.homeSection .container{
+section#homeSection .container{
    /* padding-left: 10%; */
    /* border-top: solid 3px #ffffff ;
    border-bottom: solid 3px #ffffff ; */
@@ -81,7 +80,7 @@ section.homeSection .container{
 
 }
 
-section.homeSection .container p{
+section#homeSection .container p{
    font-size: 100px;
    font-family: 'Rubik Glitch', system-ui;
 

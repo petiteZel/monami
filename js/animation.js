@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(MotionPathPlugin);
+  gsap.registerPlugin(ScrollTrigger);
   gsap.set(".wave", { scaleY: 0 });
 
   gsap.to(".wave", {
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 글리치 효과를 위한 랜덤한 값 생성 함수
   function randomGlitchParams() {
     return {
-      x: Math.random()*1000-500, // 좌우로 랜덤하게 이동
+      x: Math.random() * 1000 - 500, // 좌우로 랜덤하게 이동
       scale: Math.random() * 0.1 + 0.9, // 랜덤한 크기 변화
       color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
         Math.random() * 255
@@ -66,17 +67,24 @@ document.addEventListener("DOMContentLoaded", function () {
       repeat: 3, // 한 번 반복
       yoyo: true, // 원래 상태로 돌아감
       ease: "none", // 선형 이징
-      onComplete: repeatCount === 4 ? resetElement : null
+      onComplete: repeatCount === 4 ? resetElement : null,
     };
   }
 
   function resetElement() {
-    gsap.to(glitch, { x: 0, y: 0, scale: 1, color: 'white', duration: 0.1, opacity:1 });
+    gsap.to(glitch, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      color: "white",
+      duration: 0.1,
+      opacity: 1,
+    });
   }
 
-  gsap.from(glitch,1,{
-    opacity:0
-  })
+  gsap.from(glitch, 1, {
+    opacity: 0,
+  });
   function runGlitchAnimation() {
     if (repeatCount < 3) {
       gsap.to(glitch, randomGlitchParams());
@@ -84,6 +92,57 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(runGlitchAnimation, 500); // 다음 애니메이션 예약
     }
   }
-  
+
   runGlitchAnimation(); // 애니메이션 시작
+
+  // home - page 이동
+  let cards = gsap.utils.toArray(".panel");
+  let tops = cards.map((card) => ScrollTrigger.create({ trigger: card }));
+
+  cards.forEach((card, i) => {
+    ScrollTrigger.create({
+      trigger: card,
+      start: () =>
+        card.offsetHeight < window.innerHeight ? "top top" : "bottom bottom",
+      pin: true,
+      pinSpacing: false,
+      markers: true,
+    });
+  });
+
+  ScrollTrigger.create({
+    snap: {
+      snapTo: (progress, self) => {
+        let panelStarts = tops.map((st) => st.start),
+          snapScroll = gsap.utils.snap(panelStarts, self.scroll());
+        return gsap.utils.normalize(
+          0,
+          ScrollTrigger.maxScroll(window),
+          snapScroll
+        );
+      },
+      duration: 0.5,
+    },
+  });
+
+  gsap.registerPlugin(ScrollToPlugin);
+
+  document
+    .querySelector(".wave")
+    .addEventListener("click", function () {
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: { y: "#introSection", offsetY: 200 },
+      });
+    });
+
+  // const panel = document.querySelector("#introSection");
+
+  // ScrollTrigger.create({
+  //   trigger: panel,
+  //   start: "top top",
+  //   pin: true,
+  //   pinSpacing: false,
+  //   markers:true
+  // });
 });

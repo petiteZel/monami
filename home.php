@@ -11,7 +11,7 @@ get_header();
 ?>
 
 
-<section class="homeSection">
+<section id="homeSection">
     <img />
     <div class="wave_line">
         <svg>
@@ -32,9 +32,9 @@ get_header();
         </div>
     </div>
 </section>
-<section class="introSection"></section>
-<section class="teamSection"></section>
-<section class="privateSection"></section>
+<section class="panel" id="introSection"></section>
+<section class="panel" id="teamSection"></section>
+<section class="panel" id="privateSection"></section>
 
 <?php
 get_footer();
