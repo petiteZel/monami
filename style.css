@@ -12,6 +12,7 @@ Version: 1.0
 
 html{
    margin: 0 !important;
+   width: 100vw !important;
 }
 
 body{
@@ -23,7 +24,22 @@ header{
     height: 15vh;
     width: 100vw;
     position: absolute;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.54);
+    padding: 2vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo .siteLogo{
+   width: 90px;
+   height: 90px;
+   border: solid 5px white;
+}
+
+header .logo .siteLogo svg path{
+   fill: white;
 }
 
 section{
@@ -32,15 +48,35 @@ section{
 }
 
 section.homeSection{
-   background-color: rgb(57, 57, 57);
+   background-image: url('./img/blackSea.jpg');
+   background-size: cover;
+   background-repeat: repeat-x;
    padding-top: 15vh;
+}
+
+section.homeSection .container{
+   padding-left: 10%;
+   border-top: solid 3px #ffffff ;
+   border-bottom: solid 3px #ffffff ;
+   background-color: rgba(0, 0, 0, 0.434);
+
+   display: flex;
+   align-items: center;
+
+   width: 100%;
+   height: 45vh;
+}
+
+section.homeSection .container p{
+   font-size: xxx-large;
+   color: white;
 }
 
 .wave {
    position: absolute;
-   width: 100%;
+   width: 100vw;
    height: 100px;
-   background-color: black;
+   background-color: rgb(255, 255, 255);
    bottom: 0;
    transform-origin: 50% 100%;
    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
@@ -52,15 +88,20 @@ section.homeSection{
  }
  .up{
    position: relative;
-   color: white;
+   color: rgb(0, 0, 0);
    font-size: 40px;
  }
 
+.wave_line{
+   width: 100vw;
+}
 
-
-
- svg {
+.wave_line svg {
+   left: 0;
    width: 100%;
-   height: 100px;
+   height: 50px;
    overflow: visible;
+   stroke-width: 4;
+   stroke: rgba(255, 255, 255, 0.488);
+   fill: rgba(255, 255, 255, 0.488);
 }
