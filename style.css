@@ -57,27 +57,9 @@ section#homeSection{
 }
 
 section#homeSection .container{
-   /* padding-left: 10%; */
-   /* border-top: solid 3px #ffffff ;
-   border-bottom: solid 3px #ffffff ; */
-   /* background-color: rgba(0, 0, 0, 0.434); */
-
-   /* display: flex;
-   align-items: center; */
-
    width: 100vw;
    height: 45vh;
-
    text-align: center;
-
-
-   /* background: rgba( 255, 255, 255, 0.15 );
-   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.685);
-   backdrop-filter: blur( 2px );
-   -webkit-backdrop-filter: blur( 2px );
-   border-radius: 10px;
-   border: 1px solid rgba( 255, 255, 255, 0.18 ); */
-
 }
 
 section#homeSection .container p{
@@ -99,6 +81,7 @@ section#homeSection .container p{
    display: flex;
    justify-content: center;
    align-items: center;
+   cursor: pointer;
 
  }
  .up{

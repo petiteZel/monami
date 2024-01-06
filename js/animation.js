@@ -135,14 +135,4 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollTo: { y: "#introSection", offsetY: 200 },
       });
     });
-
-  // const panel = document.querySelector("#introSection");
-
-  // ScrollTrigger.create({
-  //   trigger: panel,
-  //   start: "top top",
-  //   pin: true,
-  //   pinSpacing: false,
-  //   markers:true
-  // });
 });
