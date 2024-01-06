@@ -9,6 +9,7 @@ Version: 1.0
 /* ------------
  * 공통
  * ------------ */
+ @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
 
 html{
    margin: 0 !important;
@@ -17,14 +18,14 @@ html{
 
 body{
    overflow-x: hidden;
-   background-color: black !important;
+   background-color: rgb(0, 0, 0) !important;
 }
 
 header{
     height: 15vh;
     width: 100vw;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.54);
+    background-color: rgba(0, 0, 0, 0.488);
     padding: 2vw;
 
     display: flex;
@@ -51,24 +52,39 @@ section.homeSection{
    background-image: url('./img/blackSea.jpg');
    background-size: cover;
    background-repeat: repeat-x;
+
+   /* background-color: rgba(255, 255, 255, 0.488); */
    padding-top: 15vh;
 }
 
 section.homeSection .container{
-   padding-left: 10%;
-   border-top: solid 3px #ffffff ;
-   border-bottom: solid 3px #ffffff ;
-   background-color: rgba(0, 0, 0, 0.434);
+   /* padding-left: 10%; */
+   /* border-top: solid 3px #ffffff ;
+   border-bottom: solid 3px #ffffff ; */
+   /* background-color: rgba(0, 0, 0, 0.434); */
 
-   display: flex;
-   align-items: center;
+   /* display: flex;
+   align-items: center; */
 
-   width: 100%;
+   width: 100vw;
    height: 45vh;
+
+   text-align: center;
+
+
+   /* background: rgba( 255, 255, 255, 0.15 );
+   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.685);
+   backdrop-filter: blur( 2px );
+   -webkit-backdrop-filter: blur( 2px );
+   border-radius: 10px;
+   border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+
 }
 
 section.homeSection .container p{
-   font-size: xxx-large;
+   font-size: 100px;
+   font-family: 'Rubik Glitch', system-ui;
+
    color: white;
 }
 
@@ -76,7 +92,7 @@ section.homeSection .container p{
    position: absolute;
    width: 100vw;
    height: 100px;
-   background-color: rgb(255, 255, 255);
+   background-color: rgba(0, 0, 0);
    bottom: 0;
    transform-origin: 50% 100%;
    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
@@ -88,7 +104,7 @@ section.homeSection .container p{
  }
  .up{
    position: relative;
-   color: rgb(0, 0, 0);
+   color: rgb(255, 255, 255);
    font-size: 40px;
  }
 

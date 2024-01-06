@@ -22,7 +22,7 @@ get_header();
         </svg>
     </div>
     <div class="container">
-        <p>Welcome</p>
+        <p>CSY</br>PORT-FOLIO</p>
     </div>
     <!-- <button class="basic"></button> -->
     <div class="wave">
