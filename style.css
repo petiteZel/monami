@@ -12,6 +12,9 @@ Version: 1.0
 
  @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;900&family=Rubik+Glitch&display=swap');
 
+ *{
+   font-family: 'Hahmlet', serif;
+ }
 
 html{
    margin: 0 !important;
@@ -138,6 +141,7 @@ section#introSection{
    display: flex;
    justify-content: space-evenly;
    align-items: center;
+   position: relative;
 }
 /* section#introSection .pictureContainer{
    background-color: white;
@@ -160,6 +164,12 @@ section#introSection .contentsList {
 }
 
 
+/* 초기: contents1: opacity-1, z-index-999 => 버튼 클릭 => opacity-0, z-index:1 */
+
+section#introSection .contents.show {
+   opacity: 1;
+   z-index:999;
+}
 section#introSection .contents {
    position: absolute;
    height: 100%;
@@ -169,7 +179,13 @@ section#introSection .contents {
    display: flex;
    flex-direction: column;
    justify-content: center;
+
+   opacity:0;
 }
+
+/* section#introSection .contents .moreBtn{
+   position:absolute;
+} */
 
 section#introSection .contents .contentsTitle {
    font-family: 'Hahmlet', serif;
@@ -183,20 +199,98 @@ section#introSection .contents .contentsText {
 }
 
 /* project section */
-
 section#projectSection{
-   background-color: white;
+   background-color: black;
    display: flex;
-   justify-content: space-evenly;
-   align-items: center;
-}
-section#privateSection{
-   background-color: white;
-   display: flex;
-   justify-content: space-evenly;
-   align-items: center;
+   padding: 5%;
+   position: relative;
 }
 
-.hi{
-   font-size: 1000px;
+section#projectSection .contentsTitle{
+   font-family: 'Hahmlet', serif;
+   font-size: xxx-large;
+   font-weight: 900;
+   color: white;
+   text-align: start;
+   width: 20%;
+}
+section#projectSection .contentsTitle p{
+   font-family: 'Hahmlet', serif;
+   font-size: 14px;
+   font-weight: 100;
+}
+section#projectSection .contentsTitle .git{
+   cursor: pointer;
+   font-size: xx-large;
+   text-align: center;
+}
+
+section#projectSection .projectList{
+   /* background-color: black; */
+   width: 80%;
+   height: 100%;
+   margin: 0 50px;
+
+   display: flex;
+   overflow-x: hidden;
+   
+}
+section#projectSection .projectList .carousel-button{
+   position: absolute;
+    top: 43%;
+    border: none;
+    background: rgb(0, 0, 0, 0.5);
+    color: white;
+}
+section#projectSection .projectList .carousel-button i{
+   font-size: xxx-large;
+}
+
+section#projectSection .projectList .carousel-button.next{
+   right: 90px;
+}
+
+section#projectSection .projectList .pageinfo{
+   background-color: white;
+   width: 280px;
+   height: 90%;
+   margin-left: 30px;
+   display: flex;
+   flex-direction: column;
+   justify-content: start;
+
+   flex-shrink: 0;
+}
+
+
+section#projectSection .projectList .pageinfo img{
+   top: 0;
+   width: 100%;
+}
+section#projectSection .projectList .pageinfo h2{
+   width: 100%;
+   padding-top: 10%;
+   text-align: center;
+}
+section#projectSection .projectList .pageinfo p{
+   width: 100%;
+   padding: 0 10px;
+}
+section#projectSection .projectList .pageinfo a{
+   width: 100%;
+   text-align: center;
+}
+
+/* footer */
+section#footer{
+   width: 100vw;
+   height: 25vh;
+   color: rgba(255, 255, 255, 0.615);
+   background-color: black;
+   padding: 1% 10%;
+   border-top: solid rgba(255, 255, 255, 0.605) 1px;
+}
+section#footer .contact{
+   display: flex;
+   flex-direction: column;
 }
