@@ -1,9 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // gsap.registerPlugin(MotionPathPlugin);
-  // gsap.registerPlugin(ScrollTrigger);
-  // gsap.registerPlugin(ScrollToPlugin);
+  gsap.registerPlugin(MotionPathPlugin);
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollToPlugin);
 
-  // // 아래 파도 버튼 애니메이션-------------------------------------------------------
+  // const tl = gsap.timeline();
+  // tl.from('header',{
+  //   delay:1,
+  //   duration:1,
+  //   backgroundColor:"rgb(0,0,0)",
+  //   height:"100vh",
+  //   ease:"power1.out"
+  // }).from(['.logo', '.menu'],{
+  //   duration:1,
+  //   opacity:0,
+  //   ease:"power1.inout"
+  // })
+
+  // // // 아래 파도 버튼 애니메이션-------------------------------------------------------
   // gsap.set(".wave", { scaleY: 0 });
   // gsap.to(".wave", {
   //   duration: 2,
@@ -73,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //     color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
   //       Math.random() * 255
   //     })`, // 랜덤한 색상
+  //     delay:2,
   //     duration: 0.05, // 짧은 지속 시간
   //     repeat: 3, // 한 번 반복
   //     yoyo: true, // 원래 상태로 돌아감
@@ -82,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // }
 
   // function resetElement() {
-  //   gsap.to(glitch, {
+  //   tl.to(glitch, {
   //     x: 0,
   //     y: 0,
   //     scale: 1,
@@ -107,34 +121,52 @@ document.addEventListener("DOMContentLoaded", function () {
   // runGlitchAnimation(); // 애니메이션 시작
 
   // // 스크롤 다운 애니메이션-------------------------------------------------------
-  // let cards = gsap.utils.toArray(".panel");
-  // let tops = cards.map((card) => ScrollTrigger.create({ trigger: card }));
+  let cards = gsap.utils.toArray(".panel");
+  let tops = cards.map((card) => ScrollTrigger.create({ trigger: card }));
 
-  // cards.forEach((card, i) => {
-  //   ScrollTrigger.create({
-  //     trigger: card,
-  //     start: () =>
-  //       card.offsetHeight < window.innerHeight ? "top top" : "bottom bottom",
-  //     pin: true,
-  //     pinSpacing: false,
-  //     markers: true,
-  //   });
-  // });
+  cards.forEach((card, i) => {
+    ScrollTrigger.create({
+      trigger: card,
+      start: () =>
+        card.offsetHeight < window.innerHeight ? "top top" : "bottom bottom",
+      pin: true,
+      pinSpacing: false,
+      markers: true,
+    });
+  });
 
-  // ScrollTrigger.create({
-  //   snap: {
-  //     snapTo: (progress, self) => {
-  //       let panelStarts = tops.map((st) => st.start),
-  //         snapScroll = gsap.utils.snap(panelStarts, self.scroll());
-  //       return gsap.utils.normalize(
-  //         0,
-  //         ScrollTrigger.maxScroll(window),
-  //         snapScroll
-  //       );
-  //     },
-  //     duration: 0.5,
-  //   },
-  // });
+  ScrollTrigger.create({
+    snap: {
+      snapTo: (progress, self) => {
+        let panelStarts = tops.map((st) => st.start);
+        let snapScroll = gsap.utils.snap(panelStarts, self.scroll());
+        console.log(self.scroll())
+        
+        if (self.scroll() > ScrollTrigger.maxScroll(window)-350) {
+          snapScroll = ScrollTrigger.maxScroll(window);
+        }
 
-  
+        return gsap.utils.normalize(
+          0,
+          ScrollTrigger.maxScroll(window),
+          snapScroll
+        );
+      },
+      duration: 0.5,
+    },
+  });
+
+  // INTROSECTION 스크롤 다운 애니메이션----------------------------------------------------
+  // gsap.to('.contentsList .contents')
+
+  document.querySelectorAll('.contents').forEach((panel, i) => {
+    ScrollTrigger.create({
+        trigger: panel,
+        start: 'top top',  
+        pin: true, // 요소를 고정
+        pinSpacing: false, // 요소 사이의 공간을 유지하지 않음
+        markers: true, // 개발 중 마커 표시 (개발 완료 후 제거 가능)
+        id: 'contents' + (i + 1), // 마커를 위한 ID, 개발 후 제거 가능
+    });
+});
 });
