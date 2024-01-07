@@ -11,7 +11,7 @@ get_header();
 ?>
 
 
-<section id="homeSection">
+<section class="panel" id="homeSection">
     <img />
     <div class="wave_line">
         <svg>
@@ -25,15 +25,18 @@ get_header();
         <p>CSY</br>PORT-FOLIO</p>
     </div>
     <!-- <button class="basic"></button> -->
+
+</section>
+<section class="panel" id="introSection">
     <div class="wave">
         <!-- 위로 화살표 -->
         <div class="up">
             <i class="fa-regular fa-hand-point-up"></i>
         </div>
     </div>
-</section>
-<section class="panel" id="introSection">
-    <div class="mypicture"></div>
+    <div class="pictureContainer">
+        <div class="mypicture"></div>
+    </div>
     <div class="contentsList">
         <div class="contents">
             <div class="contentsTitle">안녕하세요!</br></div>
@@ -112,17 +115,19 @@ get_header();
     <!--  -->
     <div class="projectList">
         <?php
-        $args = array(
-            'post_type'      => 'page',
-            'posts_per_page' => -1,  // 모든 페이지를 가져옴
-            'post_status'    => 'publish'
+        // $args = 
+
+        $pageArray = new WP_Query(
+            array(
+                'posts_per_page' => -1,  // 모든 페이지를 가져옴
+                'post_type'      => 'page',
+                'orderby'        => 'rand'
+            )
         );
 
-        $pages = new WP_Query($args);
-
-        if ($pages->have_posts()) {
-            while ($pages->have_posts()) {
-                $pages->the_post();
+        if ($pageArray->have_posts()) {
+            while ($pageArray->have_posts()) {
+                $pageArray->the_post();
 
                 $page_id = get_the_ID(); // 현재 페이지의 ID
                 $title = get_the_title(); // 페이지 제목
@@ -131,24 +136,44 @@ get_header();
                 $thumbnail = get_the_post_thumbnail_url($page_id, 'full'); // 썸네일 이미지 URL
 
                 // 각 페이지 정보 출력 (여기서는 예시로 HTML 구조를 사용)
-                echo '<div class="page">';
+                echo '<div class="pageinfo">';
                 if ($thumbnail) {
-                    echo '<img src="' . esc_url($thumbnail) . '" alt="' . esc_attr($title) . '">';
+                    echo '<img src="' . esc_url($thumbnail) . '" alt="' . esc_attr($title) . '" />';
                 }
                 echo '<h2>' . esc_html($title) . '</h2>';
                 echo '<p>' . esc_html($excerpt) . '</p>';
                 echo '<a href="' . esc_url($permalink) . '">Read More</a>';
                 echo '</div>';
+                // echo 'what';
             }
             wp_reset_postdata();
         } else {
-            echo 'No pages found.';
+            echo '<p>No pages found.</p>';
         }
         ?>
     </div>
 </section>
-<section class="panel" id="privateSection">HI</section>
+
+<section class="panel" id="privateSection" style="background-color: aqua;">HI</section>
+
+<!-- <div class="hi">wowwwwwwwwwwww</div> -->
+<section class="panel" style="background-color: black;"></section>
+
 
 <?php
 get_footer();
 ?>
+
+<!-- <div class="introSection">
+    <div class="mypicture"></div>
+    <div class="contentsList">
+        <div class="contents"></div>
+        <div class="contents"></div>
+        <div class="contents"></div>
+    </div>
+</div> -->
+
+<!-- 
+<section class='panel' style="background-color: red;"></section>
+<section class='panel' style="background-color: aqua;"></section>
+<section class='panel' style="background-color: blue;"></section> -->
