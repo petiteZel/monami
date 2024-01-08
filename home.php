@@ -43,7 +43,13 @@ get_header();
             <div class="contentsText">
                 <p>Front-End 개발자 최승연입니다.</p>
             </div>
-            <button class="moreBtn">어떤 개발자가 되고 싶나요?</button>
+            <button class="moreBtn">
+                <div class="typing-container">
+                    <span id="typed-text"></span>
+                    <div class="cursor"></div>
+                    <div class="search"><i class="fa-solid fa-magnifying-glass"></i></div>
+                </div>
+            </button>
 
         </div>
         <div class="contents next">
@@ -128,47 +134,48 @@ get_header();
 
     <!-- 워드프레스 글 목록 불러오기 -->
     <!--  -->
-        <div class="projectList">
-            <button class="carousel-button prev"><i class="fa-solid fa-chevron-left"></i></button>
-            <?php
-            // $args = 
+    <div class="projectList">
+        <button class="carousel-button prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <?php
+        // $args = 
 
-            $pageArray = new WP_Query(
-                array(
-                    'posts_per_page' => -1,  // 모든 페이지를 가져옴
-                    'post_type'      => 'page',
-                    'orderby'        => 'rand'
-                )
-            );
+        $pageArray = new WP_Query(
+            array(
+                'posts_per_page' => -1,  // 모든 페이지를 가져옴
+                'post_type'      => 'page',
+                'orderby'        => 'rand'
+            )
+        );
 
-            if ($pageArray->have_posts()) {
-                while ($pageArray->have_posts()) {
-                    $pageArray->the_post();
+        if ($pageArray->have_posts()) {
+            while ($pageArray->have_posts()) {
+                $pageArray->the_post();
 
-                    $page_id = get_the_ID(); // 현재 페이지의 ID
-                    $title = get_the_title(); // 페이지 제목
-                    $excerpt = get_the_excerpt(); // 페이지 요약
-                    $permalink = get_permalink(); // 페이지 주소
-                    $thumbnail = get_the_post_thumbnail_url($page_id, 'full'); // 썸네일 이미지 URL
+                $page_id = get_the_ID(); // 현재 페이지의 ID
+                $title = get_the_title(); // 페이지 제목
+                $excerpt = get_the_excerpt(); // 페이지 요약
+                $permalink = get_permalink(); // 페이지 주소
+                $thumbnail = get_the_post_thumbnail_url($page_id, 'full'); // 썸네일 이미지 URL
 
-                    // 각 페이지 정보 출력 (여기서는 예시로 HTML 구조를 사용)
-                    echo '<div class="pageinfo">';
-                    if ($thumbnail) {
-                        echo '<img src="' . esc_url($thumbnail) . '" alt="' . esc_attr($title) . '" />';
-                    }
-                    echo '<h2>' . esc_html($title) . '</h2>';
-                    echo '<p>' . esc_html($excerpt) . '</p>';
-                    echo '<a href="' . esc_url($permalink) . '">Read More</a>';
-                    echo '</div>';
-                    // echo 'what';
+                // 각 페이지 정보 출력 (여기서는 예시로 HTML 구조를 사용)
+                echo '<div class="projectContainer"><div class="pageinfo">';
+                if ($thumbnail) {
+                    echo '<img src="' . esc_url($thumbnail) . '" alt="' . esc_attr($title) . '" />';
                 }
-                wp_reset_postdata();
-            } else {
-                echo '<p>No pages found.</p>';
+                echo '</div><div class="overCard">';
+                echo '<h2>' . esc_html($title) . '</h2>';
+                echo '<p>' . esc_html($excerpt) . '</p>';
+                echo '<a href="' . esc_url($permalink) . '">Read More</a>';
+                echo '</div></div>';
+                // echo 'what';
             }
-            ?>
-            <button class="carousel-button next"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
+            wp_reset_postdata();
+        } else {
+            echo '<p>No pages found.</p>';
+        }
+        ?>
+        <button class="carousel-button next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
 
 </section>
 

@@ -40,12 +40,14 @@ function set_scripts()
     wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js', array(), false, true );
     // MotionPathPlugin
     wp_enqueue_script( 'gsap-mp', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/MotionPathPlugin.min.js', array('gsap-js'), false, true );
+    // TextPlugin
+    wp_enqueue_script( 'gsap-tp', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js', array('gsap-js'), false, true );
     // ScrollToPlugin
     wp_enqueue_script( 'gsap-sp', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js', array('gsap-js'), false, true );
     // ScrollTrigger - with gsap.js passed as a dependency
     wp_enqueue_script( 'gsap-st', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js', array('gsap-js'), false, true );
     // Your animation code file - with gsap.js passed as a dependency
-    wp_enqueue_script( 'gsap-js2', get_template_directory_uri() . '/js/animation.js', array('gsap-js','gsap-st','gsap-sp','gsap-mp'), false, false );
+    wp_enqueue_script( 'gsap-js2', get_template_directory_uri() . '/js/animation.js', array('gsap-js','gsap-st','gsap-sp','gsap-mp','gsap-tp'), false, false );
 
 
 };

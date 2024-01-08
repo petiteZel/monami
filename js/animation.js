@@ -1,20 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-  gsap.registerPlugin(MotionPathPlugin);
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(ScrollToPlugin);
+  gsap.registerPlugin(MotionPathPlugin, ScrollTrigger, ScrollToPlugin, TextPlugin);
 
   const tl = gsap.timeline();
-  tl.from('header',{
-    delay:1,
-    duration:1,
-    backgroundColor:"rgb(0,0,0)",
-    height:"100vh",
-    ease:"power1.out"
-  }).from(['.logo', '.menu'],{
-    duration:1,
-    opacity:0,
-    ease:"power1.inout"
-  })
+  tl.from("header", {
+    delay: 1,
+    duration: 1,
+    backgroundColor: "rgb(0,0,0)",
+    height: "100vh",
+    ease: "power1.out",
+  }).from([".logo", ".menu"], {
+    duration: 1,
+    opacity: 0,
+    ease: "power1.inout",
+  });
 
   // // 아래 파도 버튼 애니메이션-------------------------------------------------------
   gsap.set(".wave", { scaleY: 0 });
@@ -25,14 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
     repeat: -1,
     yoyo: true,
   });
-  document
-    .querySelector(".wave")
-    .addEventListener("click", function () {
-      gsap.to(window, {
-        duration: 1,
-        scrollTo: { y: "#introSection", offsetY: 200 },
-      });
+  document.querySelector(".wave").addEventListener("click", function () {
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: { y: "#introSection", offsetY: 200 },
     });
+  });
 
   //위 파도 라인 애니메이션-------------------------------------------------------
   const wave1 = document.querySelector("#wave1");
@@ -86,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
         Math.random() * 255
       })`, // 랜덤한 색상
-      delay:2,
+      delay: 2,
       duration: 0.05, // 짧은 지속 시간
       repeat: 3, // 한 번 반복
       yoyo: true, // 원래 상태로 돌아감
@@ -122,17 +118,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // // 스크롤 다운 애니메이션-------------------------------------------------------
   let cards = gsap.utils.toArray(".panel");
-  cards.forEach((card)=>{
+  cards.forEach((card) => {
     ScrollTrigger.create({
-      trigger:card,
-      start:"top top",
-      pin:true,
-      pinSpacing:false,
-      markers:true,
-      snap: 1 / (2-1)
-    })
-
-  })
+      trigger: card,
+      start: "top top",
+      pin: true,
+      pinSpacing: false,
+      markers: true,
+      snap: 1 / (2 - 1),
+    });
+  });
 
   // INTROSECTION 스크롤 다운 애니메이션----------------------------------------------------
   // 클래스를 추가하는 함수
@@ -148,59 +143,113 @@ document.addEventListener("DOMContentLoaded", function () {
   const moreBtn = document.querySelectorAll(".moreBtn");
   const moreBtnTl = gsap.timeline();
 
-  moreBtn.forEach((btn)=>{
+  moreBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
+      moreBtnTl
+        .to(".show", 1, {
+          opacity: 0,
+          ease: "power1.inout",
+          onComplete: () =>
+            removeClass(document.querySelector(".show"), "show"),
+        })
+        .to(".next", 1, {
+          opacity: 1,
+          ease: "power1.out",
+          onComplete: () => {
+            addClass(document.querySelector(".next"), "show");
+            removeClass(document.querySelector(".show"), "next");
+            if (document.querySelector(".show").nextElementSibling) {
+              addClass(
+                document.querySelector(".show").nextElementSibling,
+                "next"
+              );
+            }
+          },
+        });
+    });
+  });
 
-    moreBtnTl.to(".show", 1, {
-      opacity: 0,
-      ease:"power1.inout",
-      onComplete: ()=> removeClass(document.querySelector(".show"), "show")
-    }).to('.next',1,{
-      opacity:1,
-      ease:"power1.out",
-      onComplete: ()=> {
-        addClass(document.querySelector(".next"), "show");
-        removeClass(document.querySelector(".show"), "next");
-        if(document.querySelector(".show").nextElementSibling){addClass(document.querySelector(".show").nextElementSibling, "next");
-      }}
+  const text = "검색어를 입력하세요...";
+  const typingSpeed = 0.1; // seconds per character
+  const typingDelay = 2; // seconds before typing starts again
+
+  function animateText() {
+    gsap.to("#typed-text", {
+      text: text,
+      duration: text.length * typingSpeed,
+      ease: "none",
+      onComplete: eraseText,
+    });
+  }
+
+  function eraseText() {
+    gsap.to("#typed-text", {
+      delay:2,
+      text: "",
+      duration: text.length * typingSpeed,
+      ease: "none",
+      onComplete: () => setTimeout(animateText, typingDelay * 1000),
+    });
+  }
+
+  animateText();
+
+  // projectSection------------------------------------------------------------------------------------
+  const projectList = document.querySelector(".projectList");
+  const nextButton = projectList.querySelector(".next");
+  const prevButton = projectList.querySelector(".prev");
+  const pageInfos = projectList.querySelectorAll(".pageinfo");
+  const projectContainer = document.querySelectorAll(".projectContainer")
+  // const overCard = document.querySelector(".overCard");
+
+  let scrollAmount = 0; // 스크롤 이동량 초기화
+  const scrollStep = pageInfos[0].clientWidth; // 스크롤 이동 거리 설정 (첫 번째 .pageinfo 너비)
+
+  nextButton.addEventListener("click", () => {
+    // 현재 스크롤 위치에서 한 페이지 너비만큼 추가
+    scrollAmount += scrollStep;
+    // 최대 스크롤 가능 값으로 제한
+    scrollAmount = Math.min(
+      scrollAmount,
+      projectList.scrollWidth - projectList.clientWidth
+    );
+
+    // 스크롤 애니메이션 실행
+    projectList.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth", // 부드러운 스크롤 효과
+    });
+  });
+
+  prevButton.addEventListener("click", () => {
+    // 현재 스크롤 위치에서 한 페이지 너비만큼 빼기
+    scrollAmount -= scrollStep;
+    // 최소 스크롤 가능 값 0으로 제한
+    scrollAmount = Math.max(scrollAmount, 0);
+
+    // 스크롤 애니메이션 실행
+    projectList.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth", // 부드러운 스크롤 효과
+    });
+  });
+
+  projectContainer.forEach(container=>{
+    container.addEventListener("mouseenter",()=>{
+      gsap.to(container.querySelector(".overCard"),{
+        y:"-50%",
+        opacity:1,
+        duration:0.5
+      })
     })
+    container.addEventListener("mouseleave",()=>{
+      gsap.to(container.querySelector(".overCard"),{
+        y:"0%",
+        opacity:0,
+        duration:0.5
+      })
+    })
+  })
 
-  });
-})
-
-// projectSection------------------------------------------------------------------------------------
-const projectList = document.querySelector('.projectList');
-const nextButton = projectList.querySelector('.next');
-const prevButton = projectList.querySelector('.prev');
-const pageInfos = projectList.querySelectorAll('.pageinfo');
-
-let scrollAmount = 0; // 스크롤 이동량 초기화
-const scrollStep = pageInfos[0].clientWidth; // 스크롤 이동 거리 설정 (첫 번째 .pageinfo 너비)
-
-nextButton.addEventListener('click', () => {
-  // 현재 스크롤 위치에서 한 페이지 너비만큼 추가
-  scrollAmount += scrollStep;
-  // 최대 스크롤 가능 값으로 제한
-  scrollAmount = Math.min(scrollAmount, projectList.scrollWidth - projectList.clientWidth);
-
-  // 스크롤 애니메이션 실행
-  projectList.scrollTo({
-    left: scrollAmount,
-    behavior: 'smooth' // 부드러운 스크롤 효과
-  });
-});
-
-prevButton.addEventListener('click', () => {
-  // 현재 스크롤 위치에서 한 페이지 너비만큼 빼기
-  scrollAmount -= scrollStep;
-  // 최소 스크롤 가능 값 0으로 제한
-  scrollAmount = Math.max(scrollAmount, 0);
-
-  // 스크롤 애니메이션 실행
-  projectList.scrollTo({
-    left: scrollAmount,
-    behavior: 'smooth' // 부드러운 스크롤 효과
-  });
-});
 
 });
