@@ -36,7 +36,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 999;
+    z-index: 2;
 }
 
 header .logo .siteLogo{
@@ -104,7 +104,7 @@ section#homeSection .container p{
    top: -100px;
    transform-origin: 50% 100%;
    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-   z-index: 999;
+   z-index: 2;
 
    display: flex;
    justify-content: center;
@@ -114,7 +114,7 @@ section#homeSection .container p{
  }
  .up{
    position: relative;
-   color: rgb(255, 255, 255);
+   color: pink;
    font-size: 40px;
  }
 
@@ -135,7 +135,6 @@ section#homeSection .container p{
 /* intro section */
 
 section#introSection{
-   /* background-color: black; */
    background-image: radial-gradient(circle at bottom left, white,rgb(28, 28, 28),rgb(25, 25, 25), black);
    color: white;
    display: flex;
@@ -143,12 +142,7 @@ section#introSection{
    align-items: center;
    position: relative;
 }
-/* section#introSection .pictureContainer{
-   background-color: white;
-   width: 50vw;
-   height: 100vh;
-   text-align:center;
-} */
+
 section#introSection .mypicture{
    background-image: url('./img/myself.png');
    background-size: cover;
@@ -163,12 +157,9 @@ section#introSection .contentsList {
    width: 50vw;
 }
 
-
-/* 초기: contents1: opacity-1, z-index-999 => 버튼 클릭 => opacity-0, z-index:1 */
-
 section#introSection .contents.show {
    opacity: 1;
-   z-index:999;
+   z-index:2;
 }
 section#introSection .contents {
    position: absolute;
@@ -188,13 +179,23 @@ section#introSection .contents .contentsTitle {
    font-family: 'Hahmlet', serif;
    font-size: xxx-large;
    font-weight: 900;
+   text-align: center;
 }
 section#introSection .contents .contentsText {
    font-family: 'Hahmlet', serif;
-   font-size: x-large;
+   font-size: large;
    font-weight: 100;
+   padding: 20px 0;
 }
 
+section#introSection .contents .contentsText ul{
+   list-style-type: none;
+   margin-top: 5px;
+}
+section#introSection .contents .contentsText>ul>li{
+   margin-bottom: 45px;
+   border-bottom: solid 1px pink;
+}
 
 .typing-container {
    padding: 10px;
@@ -216,14 +217,14 @@ section#introSection .contents .contentsText {
 }
 section#introSection .contents .moreBtn{
    position: relative;
-   border: 1px solid #ccc;
+   border: 1px solid pink;
    background-color: transparent;
    color: white;
    width: 300px;
 
 }
 section#introSection .contents .moreBtn .search{
-   color: white;
+   color: pink;
    position: absolute;
    right: 20px;
    top: 25%;
@@ -260,10 +261,10 @@ section#projectSection .contentsTitle .git{
    cursor: pointer;
    font-size: xx-large;
    text-align: center;
+   color: pink;
 }
 
 section#projectSection .projectList{
-   /* background-color: black; */
    width: 80%;
    height: 100%;
    margin: 0 50px;
@@ -284,7 +285,7 @@ section#projectSection .projectList .carousel-button i{
    font-size: xxx-large;
 }
 
-section#projectSection .projectList .carousel-button.next{
+section#projectSection .projectList .carousel-button.nextBtn{
    right: 90px;
 }
 
@@ -300,40 +301,70 @@ section#projectSection .projectList .projectContainer .overCard{
    height: 100%;
    position: absolute;
    background-color: black;
+   border: solid 1px pink;
    bottom: -50%;
    left: 0;
    opacity: 0;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   color: white;
 }
 
 section#projectSection .projectList .projectContainer .overCard h2{
-   width: 100%;
-   padding-top: 10%;
+   width: 50%;
+   padding: 2% 0;
    text-align: center;
+   border-bottom: solid 1px white;
+   font-weight: 900;
+
+   white-space: nowrap; /* 줄바꿈 방지 */
+   overflow: hidden; 
 }
+section#projectSection .projectList .projectContainer .overCard .stacks{
+   width: 30%;
+   height: 30px;
+   margin: 20px 0;
+   display: flex;
+   justify-content: space-evenly;
+}
+section#projectSection .projectList .projectContainer .overCard .stacks img{
+   width: 30px;
+   height: 30px;
+}
+
 section#projectSection .projectList .projectContainer .overCard p{
    width: 100%;
    padding: 0 10px;
+   text-align: center;
 }
 section#projectSection .projectList .projectContainer .overCard a{
    width: 100%;
    text-align: center;
+   text-decoration: none;
+   background-color: white;
+   color: black;
+   font-weight: 900;
+   height: 25px;
+}
+section#projectSection .projectList .projectContainer .overCard a:hover{
+   background-color: pink;
 }
 
 section#projectSection .projectList .projectContainer .pageinfo{
    background-color: white;
    width: 100%;
    height: 100%;
-   /* display: flex;
-   flex-direction: column;
-   justify-content: start; */
-
-   /* flex-shrink: 0; */
 }
 
 
 section#projectSection .projectList .projectContainer .pageinfo img{
    top: 0;
    width: 100%;
+   height: 100%;
 
 }
 

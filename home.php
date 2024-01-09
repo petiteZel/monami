@@ -41,7 +41,8 @@ get_header();
         <div class="contents show">
             <div class="contentsTitle">안녕하세요!</br></div>
             <div class="contentsText">
-                <p>Front-End 개발자 최승연입니다.</p>
+                <p style="font-size: x-large;">새로운 지식을 배우는 것을 좋아하고, 코딩이 즐거운</br>
+                <span style="border-radius: 3px;background-color:#ffc0cbb8;font-weight:900;">Front-End 개발자</span> 최승연입니다. </p>
             </div>
             <button class="moreBtn">
                 <div class="typing-container">
@@ -55,9 +56,15 @@ get_header();
         <div class="contents next">
             <div class="contentsTitle">I WANT TO BE...</br></div>
             <div class="contentsText">
-                <p>어쩌구 저쩌구 개발자</br>어쩌구니 저쩌구니 개발자</p>
+                <p>🎇 사용의 편의성을 중요시 여기는 개발자</br>🎇 문제해결을 위한 고민과 새로운 아이디어를 이야기하는 것을 즐기는 개발자</p>
             </div>
-            <button class="moreBtn">어떤 경험이 있나요?</button>
+            <button class="moreBtn">
+            <div class="typing-container">
+                    <span id="typed-text"></span>
+                    <div class="cursor"></div>
+                    <div class="search"><i class="fa-solid fa-magnifying-glass"></i></div>
+                </div>
+            </button>
         </div>
         <div class="contents">
             <div class="contentsTitle">I STUDIED...</br></div>
@@ -65,45 +72,42 @@ get_header();
                 <ul>
                     <li>
                         <div class="subTitle">
-                            2022.09.12~2022.12.30</br>
-                            엘리스 SW 트랙 3기
+                            📅 2022.09.12~2022.12.30</br>
+                            📢 엘리스 SW 트랙 3기</br>
                         </div>
                         <div class="projectName">
                             <ul>
                                 <li>
-                                    <div>(Team)마녀상점:</div>
+                                    <div>(Team)마녀상점: 나에게 필요한 상품을 추천해주는 신비한 인터넷 쇼핑몰</div>
                                 </li>
                                 <li>
-                                    <div>(Team)CodiBuddy:</div>
+                                    <div>(Team)CodiBuddy: 개발자 스터디 구하기 웹서비스</div></br>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <div class="subTitle">
-                            2022.01.10~2022.01.21</br>
-                            실전 메타버스 제작하기
+                            📅 2022.01.10~2022.01.21</br>
+                            📢 실전 메타버스 제작하기</br>
                         </div>
                         <div class="projectName">
                             <ul>
                                 <li>
-                                    <div>Moving-Maze:</div>
+                                    <div>Moving-Maze: 거미 몬스터를 피해 통과하는 미로 게임</div></br>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <div class="subTitle">
-                            2020.07.25~2020.12.25</br>
-                            광주 인공지능 사관학교 1기
+                            📅 2020.07.25~2020.12.25</br>
+                            📢 광주 인공지능 사관학교 1기</br>
                         </div>
                         <div class="projectName">
                             <ul>
                                 <li>
-                                    <div>마녀상점:</div>
-                                </li>
-                                <li>
-                                    <div>(Team)Tweety: 정맥 및 안면 인식을 통한 출입제한 시스템</div>
+                                    <div>(Team)Tweety: 정맥 및 안면 인식을 통한 출입제한 시스템</div></br>
                                 </li>
                             </ul>
                         </div>
@@ -135,7 +139,7 @@ get_header();
     <!-- 워드프레스 글 목록 불러오기 -->
     <!--  -->
     <div class="projectList">
-        <button class="carousel-button prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="carousel-button prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
         <?php
         // $args = 
 
@@ -157,6 +161,10 @@ get_header();
                 $permalink = get_permalink(); // 페이지 주소
                 $thumbnail = get_the_post_thumbnail_url($page_id, 'full'); // 썸네일 이미지 URL
 
+                $stacks = get_post_meta(get_the_ID(), 'stacks', true);
+                $stacksText = esc_html($stacks);
+                $stacksList = explode(",", $stacksText);
+                
                 // 각 페이지 정보 출력 (여기서는 예시로 HTML 구조를 사용)
                 echo '<div class="projectContainer"><div class="pageinfo">';
                 if ($thumbnail) {
@@ -164,6 +172,13 @@ get_header();
                 }
                 echo '</div><div class="overCard">';
                 echo '<h2>' . esc_html($title) . '</h2>';
+                if ($stacks) {
+                    echo '<div class="stacks">';
+                    foreach($stacksList as $stack){
+                        echo '<img id="'.$stack.'" src="'.get_template_directory_uri().'/img/'.$stack.'.svg" />';
+                    };
+                    echo '</div>';
+                }
                 echo '<p>' . esc_html($excerpt) . '</p>';
                 echo '<a href="' . esc_url($permalink) . '">Read More</a>';
                 echo '</div></div>';
@@ -174,7 +189,7 @@ get_header();
             echo '<p>No pages found.</p>';
         }
         ?>
-        <button class="carousel-button next"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="carousel-button nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
 </section>

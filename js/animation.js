@@ -84,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
       })`, // 랜덤한 색상
       delay: 2,
       duration: 0.05, // 짧은 지속 시간
-      repeat: 3, // 한 번 반복
+      repeat: 3,
       yoyo: true, // 원래 상태로 돌아감
-      ease: "none", // 선형 이징
+      ease: "none",
       onComplete: repeatCount === 4 ? resetElement : null,
     };
   }
@@ -125,7 +125,12 @@ document.addEventListener("DOMContentLoaded", function () {
       pin: true,
       pinSpacing: false,
       markers: true,
-      snap: 1 / (2 - 1),
+      snap: {
+        snapTo: 1 / (2 - 1),
+        duration: {min: 0.1, max:0.3},
+        delay:0.2,
+        ease:"power1.inout"
+      }
     });
   });
 
@@ -142,17 +147,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const moreBtn = document.querySelectorAll(".moreBtn");
   const moreBtnTl = gsap.timeline();
+  let num = 0;
 
   moreBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
+      if(num===0){
+        num = num+1;
+      }else{
+        num = num-1;
+      }
       moreBtnTl
         .to(".show", 1, {
+          x:500,
           opacity: 0,
           ease: "power1.inout",
           onComplete: () =>
             removeClass(document.querySelector(".show"), "show"),
         })
         .to(".next", 1, {
+          width:"100%",
           opacity: 1,
           ease: "power1.out",
           onComplete: () => {
@@ -169,16 +182,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const text = "검색어를 입력하세요...";
+  const texts = ["어떤 개발자가 되고 싶나요?","어떤 경험이 있나요?"];
+  const text = texts[num];
   const typingSpeed = 0.1; // seconds per character
-  const typingDelay = 2; // seconds before typing starts again
+  const typingDelay = 0.5; // seconds before typing starts again
 
   function animateText() {
+    // const texts = ["어떤 개발자가 되고 싶나요?","어떤 경험이 있나요?"];
+    const text = texts[num];
     gsap.to("#typed-text", {
       text: text,
       duration: text.length * typingSpeed,
       ease: "none",
-      onComplete: eraseText,
+      onComplete: () => setTimeout(eraseText, 2000),
     });
   }
 
@@ -191,13 +207,13 @@ document.addEventListener("DOMContentLoaded", function () {
       onComplete: () => setTimeout(animateText, typingDelay * 1000),
     });
   }
-
   animateText();
+
 
   // projectSection------------------------------------------------------------------------------------
   const projectList = document.querySelector(".projectList");
-  const nextButton = projectList.querySelector(".next");
-  const prevButton = projectList.querySelector(".prev");
+  const nextButton = projectList.querySelector(".nextBtn");
+  const prevButton = projectList.querySelector(".prevBtn");
   const pageInfos = projectList.querySelectorAll(".pageinfo");
   const projectContainer = document.querySelectorAll(".projectContainer")
   // const overCard = document.querySelector(".overCard");
@@ -233,14 +249,32 @@ document.addEventListener("DOMContentLoaded", function () {
       behavior: "smooth", // 부드러운 스크롤 효과
     });
   });
-
+  
+  // 마우스 오버 애니메이션
   projectContainer.forEach(container=>{
     container.addEventListener("mouseenter",()=>{
-      gsap.to(container.querySelector(".overCard"),{
+      const overCard = container.querySelector(".overCard");
+
+      gsap.to(overCard,{
         y:"-50%",
         opacity:1,
         duration:0.5
+      });
+
+      gsap.from([overCard.querySelector("p"),overCard.querySelector("a"),overCard.querySelector(".stacks")],{
+        y:"-1000px",
+        opacity:0,
+        duration:0.6
+      });
+
+      gsap.from(overCard.querySelector("h2"),{
+        delay:0.6,
+        width:"10%",
+        opacity:0,
+        duration:0.6,
+        ease:"power1.inout"
       })
+
     })
     container.addEventListener("mouseleave",()=>{
       gsap.to(container.querySelector(".overCard"),{
