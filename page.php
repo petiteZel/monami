@@ -24,38 +24,39 @@ get_header('page');
         
         if($prev_post_link) {
             echo '<span>'.$prev_post_link.'</span>';
-        }
+        }else{
+            echo '<i style="color:lightgrey" class="fa-solid fa-chevron-left"></i>';
+        };
 
         echo get_the_title();
         
         if ($next_post_link) {
             echo '<span>'.$next_post_link.'</span>';
-        }
+        }else{
+            echo '<i style="color:lightgrey" class="fa-solid fa-chevron-right"></i>';
+        };
 
         // 페이지 콘텐츠 출력
         echo '</h1></header><div class="contentArea">
-        <main id="main" class="siteMain pinkMirror" role="main">';
+        <nav class="pageNav">
+        <ul>
+        <li><a id="goToServiceIntro"><span>기획 및 개요</span></a></li>
+        <li><a id="goToServiceFeat"><span>기능 및 서비스</span></a></li>
+        <li><a id="goToGitBtn"><span>사이트 보기</span></a></li>
+        </ul></nav>
+        <main id="main" class="siteMain pinkMirror" role="main">
+        <div style="width:95vw;height:90vh;position:absolute;z-index:3;" class="blockScroll"></div>';
         the_content();
 
-        // 페이지 네비게이션 (이전 / 다음 페이지 링크)
-        // wp_link_pages( array(
-        //     'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'your-theme-slug' ),
-        //     'after'  => '</div>',
-        // ) );
-
-    endwhile; // 페이지 루프 종료
+    endwhile;
     ?>
-    <!-- <button class="moodBtn pinkMirror"><div class="btnCase pinkMirror">Mood</br>Board</div></button> -->
     <?php
         
         ?>
-    </main><!-- #main -->
-</div><!-- #primary -->
+    </main>
+</div>
 
 <?php
-// 사이드바 불러오기 (선택 사항)
-// get_sidebar();
-
 // 푸터 불러오기
 get_footer();
 ?>

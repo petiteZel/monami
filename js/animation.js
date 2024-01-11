@@ -352,50 +352,54 @@ document.addEventListener("DOMContentLoaded", function () {
             duration: 0.3,
             height: "90vh",
           })
-          .to(btnCase,{
-            duration:0.3,
-            rotate:0,
-            y:150,
-            onComplete:()=>{btnCase.style.zIndex=999}
+          .to(btnCase, {
+            duration: 0.3,
+            rotate: 0,
+            y: 150,
+            onComplete: () => {
+              btnCase.style.zIndex = 999;
+            },
           })
           .to(moveBtn, {
             duration: 0.3,
             width: "90vw",
           })
-          .to("#moodBoard>div figure figcaption",{
-            duration:0.1,
-            minHeight:"45%"
+          .to("#moodBoard>div figure figcaption p", {
+            duration: 0.1,
+            display: "block",
           })
-          .to(moodBoard,{
-            duration:0.3,
-            opacity:1,
-            width:"90%",
-            height:"90%",
-            onComplete:()=>{
-              moodBoard.style.zIndex=3;
-            }
+          .to(moodBoard, {
+            duration: 0.3,
+            opacity: 1,
+            width: "90%",
+            height: "90%",
+            onComplete: () => {
+              moodBoard.style.zIndex = 3;
+            },
           });
       } else {
         moveBtnTl
-        .to(btnCase,{
-          duration:0.3,
-          y:0,
-          rotate:-45,
-        }).to(moodBoard,{
-          duration:0.3,
-          opacity:0,
-          height: "80%",
-          width: "100%",
-          onComplete:()=>{
-            moodBoard.style.zIndex=0;
-          }
-          }).to(moveBtn, {
+          .to(btnCase, {
+            duration: 0.3,
+            y: 0,
+            rotate: -45,
+          })
+          .to(moodBoard, {
+            duration: 0.3,
+            opacity: 0,
+            height: "80%",
+            width: "100%",
+            onComplete: () => {
+              moodBoard.style.zIndex = 0;
+            },
+          })
+          .to(moveBtn, {
             duration: 0.3,
             height: "200px",
           })
-          .to("#moodBoard>div figure figcaption",{
-            duration:0.1,
-            minHeight:"0"
+          .to("#moodBoard>div figure figcaption p", {
+            duration: 0.1,
+            display: "none",
           })
           .to(moveBtn, {
             duration: 0.3,
@@ -407,5 +411,120 @@ document.addEventListener("DOMContentLoaded", function () {
           });
       }
     });
+
+
+// page 스크롤 애니메이션
+    const contentsHeight = document.querySelector(
+      ".pageContentsContainer"
+    ).scrollHeight;
+    const imagesHeight = document.querySelector(".allSiteImages").scrollHeight;
+    const totalHeight = contentsHeight + imagesHeight;
+
+    const ani = gsap.timeline();
+    ani
+      .to(".pageContentsContainer", {
+        scrollTo: { y: contentsHeight, autoKill: false },
+      })
+      .to(".allSiteImages", {
+        scrollTo: { y: imagesHeight, autoKill: false },
+      });
+
+    ScrollTrigger.create({
+      animation: ani,
+      trigger: ".contentArea",
+      start: "top top",
+      end: "+="+totalHeight,
+      pin: true,
+      pinSpacing: false,
+      scrub: true,
+      markers: true,
+    });
+
+
+    document
+      .getElementById("goToServiceIntro")
+      .addEventListener("click", function () {
+        gsap.to(window, {
+          duration: 0.1, // 애니메이션 지속 시간 (초)
+          scrollTo: {
+            y: "#serviceIntro",
+            offsetY: 100,
+          }, // 이동할 섹션의 ID
+          ease: "power1.inOut", // 애니메이션 이징 효과
+        });
+      });
+    document
+      .getElementById("goToServiceFeat")
+      .addEventListener("click", function () {
+        gsap.to(window, {
+          duration: 0.1, // 애니메이션 지속 시간 (초)
+          scrollTo: {
+            y: "#serviceFeat",
+          }, // 이동할 섹션의 ID
+          ease: "power1.inOut", // 애니메이션 이징 효과
+        });
+      });
+    document
+      .getElementById("goToGitBtn")
+      .addEventListener("click", function () {
+        gsap.to(window, {
+          duration: 0.1, // 애니메이션 지속 시간 (초)
+          scrollTo: {
+            y: "#gitBtn",
+          }, // 이동할 섹션의 ID
+          ease: "power1.inOut", // 애니메이션 이징 효과
+        });
+      });
+
+    // .pageContentsContainer에 대한 ScrollTrigger 생성
+    // ScrollTrigger.create({
+    //   trigger: ".contentArea",
+    //   start: "top 15vh",
+    //   markers:true,
+    //   pinSpacing:false,
+    //   end: () =>
+    //     "+=" + document.querySelector(".pageContentsContainer").scrollHeight,
+    //   scrub: true,
+    //   pin: true,
+    //   onEnter: () =>
+    //     gsap.to(window, {
+    //       scrollTo: { y: ".pageContentsContainer", autoKill: false },
+    //     }),
+    //   onEnterBack: () =>
+    //     gsap.to(window, {
+    //       scrollTo: { y: ".pageContentsContainer", autoKill: false },
+    //     }),
+    // });
+
+    // .allSiteImages에 대한 ScrollTrigger 생성
+    // ScrollTrigger.create({
+    //   trigger: ".allSiteImages",
+    //   start: "top top",
+    //   end: () => "+=" + document.querySelector(".allSiteImages").scrollHeight,
+    //   scrub: true,
+    //   pin: true,
+    //   onEnter: () =>
+    //     gsap.to(window, { scrollTo: { y: ".allSiteImages", autoKill: false } }),
+    //   onEnterBack: () =>
+    //     gsap.to(window, { scrollTo: { y: ".allSiteImages", autoKill: false } }),
+    // });
+
+    // onUpdate: (self) => {
+    //   const scrollLen = self.progress / (contentsHeight + imagesHeight);
+    //   console.log(contentsHeight/(contentsHeight + imagesHeight)*0.66);
+    //   console.log(scrollLen);
+    //   console.log(scrollLen * contentsHeight);
+    //   // console.log(contentsHeight/(contentsHeight + imagesHeight));
+    //   if (scrollLen <= contentsHeight/(contentsHeight + imagesHeight)*0.66) {
+    //     gsap.to(".pageContentsContainer", {
+    //       scrollTo: { y: scrollLen * contentsHeight*contentsHeight, autoKill: false },
+    //     });
+    //   } else {
+    //     gsap.to(".allSiteImages", {
+    //       scrollTo: { y: scrollLen * imagesHeight, autoKill: false },
+    //     });
+    //   }
+    // },
+    // dont move
   }
 });

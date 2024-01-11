@@ -10,7 +10,7 @@ Version: 1.0
  * 공통
  * ------------ */
 
- @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;900&family=Rubik+Glitch&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;900&family=Rubik+Glitch&display=swap&family=Noto+Serif+KR:wght@200&display=swap');
 
  *{
    font-family: 'Hahmlet', serif;
@@ -420,11 +420,17 @@ section#footer .contact{
 .contentArea{
    padding-top: 15vh;
    background-image: url('./img/pageBack.png');
-   background-size: contain;
+   background-size: cover;
    background-repeat: no-repeat;
 
    display: flex;
    justify-content: center;
+
+   height: 100vh;
+   overflow-y: hidden;
+}
+.contentArea p{
+   font-family: 'Noto Serif KR', serif;
 }
 .contentArea .siteMain{
    width: 90%;
@@ -440,7 +446,12 @@ section#footer .contact{
 
    display: flex;
    flex-direction: column;
-   justify-content: space-evenly;
+   overflow-y: auto;
+   -ms-overflow-style: none; /* 인터넷 익스플로러 */
+   scrollbar-width: none; /* 파이어폭스 */
+}
+.contentArea .siteMain .allSiteImages::-webkit-scrollbar {
+   display: none;
 }
 .contentArea .siteMain .allSiteImages>div{
    display: flex;
@@ -450,6 +461,13 @@ section#footer .contact{
 }
 .contentArea .siteMain .allSiteImages img{
    border-radius: 50px !important;
+}
+.contentArea .siteMain .allSiteImages video{
+   border-radius: 50px !important;
+}
+.contentArea .siteMain .allSiteImages .wp-block-video.mainVideo{
+   width: 95%;
+   margin-top: 20%;
 }
 .contentArea .siteMain .allSiteImages .wp-block-image.mainImg{
    width: 95%;
@@ -466,15 +484,26 @@ section#footer .contact{
    width: 45%;
    background: rgba( 255, 255, 255, 0.25 );
    border-radius: 50px;
+   overflow-y: auto;
+   -ms-overflow-style: none; /* 인터넷 익스플로러 */
+   scrollbar-width: none; /* 파이어폭스 */
 }
+
+.contentArea .siteMain .pageContentsContainer::-webkit-scrollbar {
+   display: none;
+}
+
 .contentArea .siteMain .pageContentsContainer>div{
    display: flex;
    flex-direction: column;
    justify-content: start;
    align-items: center;
 }
-.contentArea .siteMain .pageContentsContainer>div>nav.pageNav{
-   position: fixed;
+.contentArea .pageNav{
+   position: absolute;
+   z-index: 3;
+   width: 10vw;
+   right: 25vw;
    margin-top: 5%;
    padding: 10px;
    background: rgba( 255, 255, 255, 0.25 );
@@ -484,17 +513,34 @@ section#footer .contact{
    border-radius: 50px;
    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
-.contentArea .siteMain .pageContentsContainer>div>nav.pageNav a{
+.contentArea .pageNav ul{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 0px;
+   margin: 0px;
+   list-style: none;
+}
+
+.contentArea .pageNav a{
+   display: block;
    width: 30px;
    height: 30px;
    border-radius: 50px;
-   background-color: white;
+   background: rgba( 255, 255, 255, 0.25 );
+   box-shadow: 0 8px 13px 0 rgb(245 208 196 / 64%);
+   backdrop-filter: blur( 4px );
+   -webkit-backdrop-filter: blur( 4px );
+   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
-/* .contentArea .siteMain .pageContentsContainer>div>nav.pageNav a:active{
-   background-color: #F5D0C4;
-} */
+.contentArea .pageNav a.active{
+   background: rgba( 255, 0, 0, 0.25 );
+}
+.contentArea .pageNav a:hover{
+   background: rgba( 255, 0, 0, 0.25 );
+}
 
-.contentArea .siteMain .pageContentsContainer>div>nav.pageNav a span {
+.contentArea .pageNav a span {
    visibility: hidden;
    width: 120px;
    background-color: black;
@@ -512,7 +558,7 @@ section#footer .contact{
  }
  
  /* 요소에 마우스를 올리면 툴팁 표시 */
- .contentArea .siteMain .pageContentsContainer>div>nav.pageNav a:hover span {
+ .contentArea .pageNav a:hover span {
    visibility: visible;
  }
 
@@ -551,6 +597,7 @@ section#footer .contact{
    width: 200px;
    height: 200px;
    border-radius: 50px;
+   z-index: 999;
    
    transform: rotate(45deg);
 }
@@ -563,7 +610,8 @@ section#footer .contact{
 }
 
 #moodBoard{
-   /* display: none; */
+   display: flex;
+   align-items: center;
    position: absolute;
    opacity: 0;
    z-index: 0;
@@ -572,7 +620,9 @@ section#footer .contact{
 }
 #moodBoard>div{
    width: 100%;
-   height: 100%;
+   height: 95%;
+   display: flex;
+   align-items: center;
 }
 #moodBoard>div figure{
    display: flex;
@@ -582,7 +632,8 @@ section#footer .contact{
    width: 100%;
 }
 #moodBoard>div figure figcaption{
-   max-width: 45%;
+   height: 45%;
+   width: 45%;
    border-radius: 50px;
 
    display: flex;
@@ -590,7 +641,22 @@ section#footer .contact{
    justify-content: center;
    align-items: start;
    padding: 0px 30px;
+
+   background: rgb(255,255,255,0.6)
 }
-#moodBoard>div img{
+#moodBoard>div figure figcaption p{
+   display: none;
+}
+#moodBoard>div figure figcaption img{
+   width:30px !important;
+   height:30px !important;
+}
+#moodBoard>div .moodImg{
    min-width: 45%;
+   object-fit: cover !important;
+   border-radius: 50px;
+}
+
+#gitBtn>div{
+   width:100%;
 }
