@@ -59,6 +59,7 @@ function custom_menu()
     register_nav_menus(
         array(
             'primary-menu'   => __('Primary Menu', 'monami'),
+            'page-menu'   => __('Page Menu', 'monami'),
         )
     );
 }
