@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     delay: 1,
     duration: 1,
     backgroundColor: "rgb(0,0,0)",
-    width:"100vw",
+    width: "100vw",
     height: "100vh",
     ease: "power1.out",
   }).from(".headerContainer", {
@@ -306,31 +306,106 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-
-
-
-
   // page.php
   const moveBtnTl = gsap.timeline();
-  const moveBtn = document.querySelector(".moodBtn");
-  
+  const moveBtn = document.querySelector("#moodBtn");
+  const btnCase = document.querySelector(".btnCase");
+  const moodBoard = document.querySelector("#moodBoard");
+  let isClick = false;
 
-  if(moveBtn){
-    moveBtn.addEventListener("mouseenter",()=>{
-      gsap.to(moveBtn,{
-        duration:1,
-        rotate:"+=720",
-        ease:"power1.inout",
-        onComplete:()=>{moveBtn.style.translate="rotate(765deg)"}
-      })
+  if (moveBtn) {
+    // 무드 버튼 회전
+    moveBtn.addEventListener("mouseenter", () => {
+      moveBtnTl.clear();
+      if (!isClick) {
+        moveBtnTl.to(moveBtn, {
+          duration: 1,
+          rotate: 765,
+          ease: "power1.inout",
+        });
+      }
     });
-    moveBtn.addEventListener("mouseleave",()=>{
-      gsap.to(moveBtn,{
-        duration:0.5,
-        rotate:45,
-        ease:"power1.inout",
-      })
+    moveBtn.addEventListener("mouseleave", () => {
+      if (!isClick) {
+        moveBtnTl.to(moveBtn, {
+          duration: 0.5,
+          rotate: 45,
+          ease: "power1.inout",
+        });
+      }
+    });
+
+    // 무드 버튼 클릭시 모달 창
+    moveBtn.addEventListener("click", () => {
+      isClick = !isClick;
+
+      if (isClick) {
+        moveBtnTl
+          .to(moveBtn, {
+            duration: 0.1,
+            rotate: 0,
+            onStart: () => {
+              moveBtn.style.transform = "rotate(0deg)";
+            },
+          })
+          .to(moveBtn, {
+            duration: 0.3,
+            height: "90vh",
+          })
+          .to(btnCase,{
+            duration:0.3,
+            rotate:0,
+            y:150,
+            onComplete:()=>{btnCase.style.zIndex=999}
+          })
+          .to(moveBtn, {
+            duration: 0.3,
+            width: "90vw",
+          })
+          .to("#moodBoard>div figure figcaption",{
+            duration:0.1,
+            minHeight:"45%"
+          })
+          .to(moodBoard,{
+            duration:0.3,
+            opacity:1,
+            width:"90%",
+            height:"90%",
+            onComplete:()=>{
+              moodBoard.style.zIndex=3;
+            }
+          });
+      } else {
+        moveBtnTl
+        .to(btnCase,{
+          duration:0.3,
+          y:0,
+          rotate:-45,
+        }).to(moodBoard,{
+          duration:0.3,
+          opacity:0,
+          height: "80%",
+          width: "100%",
+          onComplete:()=>{
+            moodBoard.style.zIndex=0;
+          }
+          }).to(moveBtn, {
+            duration: 0.3,
+            height: "200px",
+          })
+          .to("#moodBoard>div figure figcaption",{
+            duration:0.1,
+            minHeight:"0"
+          })
+          .to(moveBtn, {
+            duration: 0.3,
+            width: "200px",
+          })
+          .to(moveBtn, {
+            duration: 0.1,
+            rotate: 45,
+          });
+      }
     });
   }
 });
-

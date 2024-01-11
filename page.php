@@ -45,7 +45,7 @@ get_header('page');
 
     endwhile; // 페이지 루프 종료
     ?>
-    <button class="moodBtn pinkMirror"><div class="btnCase pinkMirror">Mood</br>Board</div></button>
+    <!-- <button class="moodBtn pinkMirror"><div class="btnCase pinkMirror">Mood</br>Board</div></button> -->
     <?php
         
         ?>
