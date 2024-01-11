@@ -230,7 +230,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevButton = projectList.querySelector(".prevBtn");
     const pageInfos = projectList.querySelectorAll(".pageinfo");
     const projectContainer = document.querySelectorAll(".projectContainer");
-    // const overCard = document.querySelector(".overCard");
 
     let scrollAmount = 0; // 스크롤 이동량 초기화
     const scrollStep = pageInfos[0].clientWidth; // 스크롤 이동 거리 설정 (첫 번째 .pageinfo 너비)
@@ -412,8 +411,22 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // home btn 애니메이션
+    const homeBtn = document.querySelector(".homeBack");
+    gsap.to(homeBtn, {
+      scale: 1.5,
+      repeat: 5,
+      yoyo: true,
+      duration: 0.3,
+      paused: true 
+    });
+  
+    // 요소에 마우스 호버 이벤트 리스너 추가
+    homeBtn.addEventListener("mouseenter", function() {
+      gsap.to(homeBtn, { scale: 1.5, repeat: 5, yoyo: true, duration: 0.3 });
+    });
 
-// page 스크롤 애니메이션
+    // page 스크롤 애니메이션
     const contentsHeight = document.querySelector(
       ".pageContentsContainer"
     ).scrollHeight;
@@ -433,98 +446,39 @@ document.addEventListener("DOMContentLoaded", function () {
       animation: ani,
       trigger: ".contentArea",
       start: "top top",
-      end: "+="+totalHeight,
+      end: "+=" + totalHeight,
       pin: true,
       pinSpacing: false,
       scrub: true,
-      markers: true,
     });
 
 
-    document
-      .getElementById("goToServiceIntro")
-      .addEventListener("click", function () {
-        gsap.to(window, {
-          duration: 0.1, // 애니메이션 지속 시간 (초)
-          scrollTo: {
-            y: "#serviceIntro",
-            offsetY: 100,
-          }, // 이동할 섹션의 ID
-          ease: "power1.inOut", // 애니메이션 이징 효과
-        });
+    // page - nav
+    // intro 상단
+    const serviceIntroHeight = document.querySelector("#serviceIntro").clientHeight;
+    const serviceFeatHeight = document.querySelector("#serviceFeat").clientHeight;
+    const serviceContainerHeight = document.querySelector(".pageContentsContainer").offsetHeight;
+    console.log(serviceIntroHeight + serviceFeatHeight + 100)
+    document.getElementById("goToServiceIntro").addEventListener("click", function() {
+      gsap.to(window, {
+        duration: 0.5,
+        scrollTo: 0,
+        ease: "power1.out"
       });
-    document
-      .getElementById("goToServiceFeat")
-      .addEventListener("click", function () {
-        gsap.to(window, {
-          duration: 0.1, // 애니메이션 지속 시간 (초)
-          scrollTo: {
-            y: "#serviceFeat",
-          }, // 이동할 섹션의 ID
-          ease: "power1.inOut", // 애니메이션 이징 효과
-        });
+    });
+    document.getElementById("goToServiceFeat").addEventListener("click", function() {
+      gsap.to(window, {
+        duration: 0.5,
+        scrollTo: serviceIntroHeight + 100,
+        ease: "power1.out"
       });
-    document
-      .getElementById("goToGitBtn")
-      .addEventListener("click", function () {
-        gsap.to(window, {
-          duration: 0.1, // 애니메이션 지속 시간 (초)
-          scrollTo: {
-            y: "#gitBtn",
-          }, // 이동할 섹션의 ID
-          ease: "power1.inOut", // 애니메이션 이징 효과
-        });
+    });
+    document.getElementById("goToGitBtn").addEventListener("click", function() {
+      gsap.to(window, {
+        duration: 0.5,
+        scrollTo: serviceIntroHeight + serviceFeatHeight + 100,
+        ease: "power1.out"
       });
-
-    // .pageContentsContainer에 대한 ScrollTrigger 생성
-    // ScrollTrigger.create({
-    //   trigger: ".contentArea",
-    //   start: "top 15vh",
-    //   markers:true,
-    //   pinSpacing:false,
-    //   end: () =>
-    //     "+=" + document.querySelector(".pageContentsContainer").scrollHeight,
-    //   scrub: true,
-    //   pin: true,
-    //   onEnter: () =>
-    //     gsap.to(window, {
-    //       scrollTo: { y: ".pageContentsContainer", autoKill: false },
-    //     }),
-    //   onEnterBack: () =>
-    //     gsap.to(window, {
-    //       scrollTo: { y: ".pageContentsContainer", autoKill: false },
-    //     }),
-    // });
-
-    // .allSiteImages에 대한 ScrollTrigger 생성
-    // ScrollTrigger.create({
-    //   trigger: ".allSiteImages",
-    //   start: "top top",
-    //   end: () => "+=" + document.querySelector(".allSiteImages").scrollHeight,
-    //   scrub: true,
-    //   pin: true,
-    //   onEnter: () =>
-    //     gsap.to(window, { scrollTo: { y: ".allSiteImages", autoKill: false } }),
-    //   onEnterBack: () =>
-    //     gsap.to(window, { scrollTo: { y: ".allSiteImages", autoKill: false } }),
-    // });
-
-    // onUpdate: (self) => {
-    //   const scrollLen = self.progress / (contentsHeight + imagesHeight);
-    //   console.log(contentsHeight/(contentsHeight + imagesHeight)*0.66);
-    //   console.log(scrollLen);
-    //   console.log(scrollLen * contentsHeight);
-    //   // console.log(contentsHeight/(contentsHeight + imagesHeight));
-    //   if (scrollLen <= contentsHeight/(contentsHeight + imagesHeight)*0.66) {
-    //     gsap.to(".pageContentsContainer", {
-    //       scrollTo: { y: scrollLen * contentsHeight*contentsHeight, autoKill: false },
-    //     });
-    //   } else {
-    //     gsap.to(".allSiteImages", {
-    //       scrollTo: { y: scrollLen * imagesHeight, autoKill: false },
-    //     });
-    //   }
-    // },
-    // dont move
+    });
   }
 });

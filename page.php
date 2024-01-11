@@ -38,14 +38,14 @@ get_header('page');
 
         // 페이지 콘텐츠 출력
         echo '</h1></header><div class="contentArea">
+        <div class="homeBack pinkMirror" onclick=\'location.href="'.home_url().'"\'><span>Home</span></div>'.'
         <nav class="pageNav">
         <ul>
         <li><a id="goToServiceIntro"><span>기획 및 개요</span></a></li>
         <li><a id="goToServiceFeat"><span>기능 및 서비스</span></a></li>
         <li><a id="goToGitBtn"><span>사이트 보기</span></a></li>
         </ul></nav>
-        <main id="main" class="siteMain pinkMirror" role="main">
-        <div style="width:95vw;height:90vh;position:absolute;z-index:3;" class="blockScroll"></div>';
+        <main id="main" class="siteMain pinkMirror" role="main">';
         the_content();
 
     endwhile;

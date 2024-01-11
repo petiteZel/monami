@@ -32,7 +32,7 @@ body{
 header{
     height: 15vh;
     width: 100vw;
-    position: absolute;
+    position: fixed;
     background-color: rgb(0, 0, 0, 0.5);
     padding: 2vw;
 
@@ -401,9 +401,39 @@ section#footer .contact{
    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-
-
-
+.homeBack{
+   background-image: url('./img/waves.png');
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: 100px;
+   height: 100px;
+   position: fixed;
+   top: 20px;
+   left: 20px;
+   border-radius: 50px;
+}
+.homeBack span {
+   visibility: hidden;
+   width: 120px;
+   background-color: black;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 5px 0;
+ 
+   /* 위치 */
+   position: absolute;
+   z-index: 1;
+   top: 30%;
+   left: 170%;
+   margin-left: -60px; /* 툴팁 너비의 절반만큼 왼쪽으로 이동 */
+ }
+.homeBack:hover span {
+   visibility: visible;
+}
+.homeBack:hover {
+   background-color: rgba(0, 0, 0, 0.29);
+}
 .pageTitle{
    height: 10vh;
    width: 50%;
@@ -467,17 +497,28 @@ section#footer .contact{
 }
 .contentArea .siteMain .allSiteImages .wp-block-video.mainVideo{
    width: 95%;
-   margin-top: 20%;
+   margin-top: 15%;
+   height: 350px !important;
+}
+.contentArea .siteMain .allSiteImages .wp-block-video.mainVideo video{
+   height: 100%;
+   object-fit:cover;
 }
 .contentArea .siteMain .allSiteImages .wp-block-image.mainImg{
    width: 95%;
    margin-top: 20%;
+   height: 350px !important;
+}
+.contentArea .siteMain .allSiteImages .wp-block-image.mainImg img{
+   height: 100%;
 }
 .contentArea .siteMain .allSiteImages .wp-block-gallery{
    width: 95%;
 }
 .contentArea .siteMain .allSiteImages .wp-block-gallery .wp-block-image{
    width: 100% !important;
+   height: 350px !important;
+   object-fit: contain;
 }
 .contentArea .siteMain .pageContentsContainer{
    position: relative;
