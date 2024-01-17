@@ -321,6 +321,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const moodBoard = document.querySelector("#moodBoard");
     const moveBtnCase = window.innerWidth <= 600 ? -15 : 150;
     let isClick = false;
+    const mvBtnLen = window.innerHeight<=600?150:200;
+
+    tl.to(
+      moveBtn,
+      {
+        duration: 5,
+        rotate: 765,
+        repeat:-1,
+        ease: "power1.inout",
+      }
+    )
 
     moveBtn.addEventListener("mouseenter", () => {
       moveBtnTl.clear();
@@ -339,6 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
           rotate: 45,
           ease: "power1.inout",
         });
+        
       }
     });
 
@@ -347,6 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isClick = !isClick;
 
       if (isClick) {
+        tl.pause();
         moveBtnTl
           .to(moveBtn, {
             duration: 0.1,
@@ -404,7 +417,7 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .to(moveBtn, {
             duration: 0.3,
-            height: "200px",
+            height: mvBtnLen+"px",
           })
           .to("#moodBoard>div figure figcaption p", {
             duration: 0.1,
@@ -412,11 +425,12 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .to(moveBtn, {
             duration: 0.3,
-            width: "200px",
+            width: mvBtnLen+"px",
           })
           .to(moveBtn, {
             duration: 0.1,
             rotate: 45,
+            onComplete:()=>tl.resume()
           });
       }
     });

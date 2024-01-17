@@ -91,9 +91,15 @@ Version: 1.1
         left: 1000px;
     }
 
+    section#projectSection .projectList .projectContainer .overCard h2{
+        font-size: 20px;
+        margin: 0;
+     }
+
     /* page.php */
     .pageTitle{
         width: 100%;
+        position: fixed;
     }
     .pageTitle .headerContainer{
         flex-direction: row;
@@ -154,25 +160,50 @@ Version: 1.1
         width: 100%;
         height: 35%;
         flex-direction: row;
-        overflow-y: hidden;
-        overflow-x: auto;
+        overflow-y: auto;
     }
     .contentArea .siteMain .pageContentsContainer #serviceIntro{
         margin-top: 10%;
     }
-}
+    .homeBack{
+        top: auto;
+        bottom: 15px;
+        z-index: 3;
+        width: 35px;
+        height: 35px;
+    }
+    .homeBack span{
+        visibility: visible;
+        top: 0;
+        left: 300%;
+        padding: 0;
+    }
+
     .btnCase{
         position: static;
         margin: 0;
+        width: 80px;
+        height: 80px;
     }
-    .homeBack{
-        top: auto;
-        bottom: 30px;
-        z-index: 3;
+    #moodBtn{
+        width: 150px;
+        height: 150px;
+    }
+    #moodBoard>div{
+        align-items: normal;
     }
     #moodBoard>div figure{
         flex-direction: column;
+        height: 100%;
+    }
+    #moodBoard>div .moodImg{
+        width: 200px;
     }
     #moodBoard>div figure figcaption{
-        width: 300px;
+        width: 260px;
+        height: auto;
     }
+    #moodBoard>div figure figcaption p{
+        font-size: 13px;
+    }
+}

@@ -415,39 +415,7 @@ section#footer .contact{
    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.homeBack{
-   background-image: url('./img/waves.png');
-   background-size: cover;
-   background-repeat: no-repeat;
-   width: 100px;
-   height: 100px;
-   position: fixed;
-   top: 20px;
-   left: 20px;
-   border-radius: 50px;
-}
-.homeBack span {
-   visibility: hidden;
-   width: 120px;
-   background-color: black;
-   color: #fff;
-   text-align: center;
-   border-radius: 6px;
-   padding: 5px 0;
- 
-   /* 위치 */
-   position: absolute;
-   z-index: 1;
-   top: 30%;
-   left: 170%;
-   margin-left: -60px; /* 툴팁 너비의 절반만큼 왼쪽으로 이동 */
- }
-.homeBack:hover span {
-   visibility: visible;
-}
-.homeBack:hover {
-   background-color: rgba(0, 0, 0, 0.29);
-}
+
 .pageTitle{
    height: 10vh;
    width: 50%;
@@ -634,6 +602,39 @@ section#footer .contact{
    
 }
 
+.homeBack{
+   background-image: url('./img/waves.png');
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: 100px;
+   height: 100px;
+   position: fixed;
+   top: 20px;
+   left: 20px;
+   border-radius: 50px;
+}
+.homeBack span {
+   visibility: hidden;
+   width: 120px;
+   background-color: black;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 5px 0;
+ 
+   /* 위치 */
+   position: absolute;
+   z-index: 1;
+   top: 30%;
+   left: 170%;
+   margin-left: -60px; /* 툴팁 너비의 절반만큼 왼쪽으로 이동 */
+ }
+.homeBack:hover span {
+   visibility: visible;
+}
+.homeBack:hover {
+   background-color: rgba(0, 0, 0, 0.29);
+}
 
 .btnCase{
    display: flex;
