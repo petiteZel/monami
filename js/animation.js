@@ -410,29 +410,33 @@ document.addEventListener("DOMContentLoaded", function () {
           });
       }
     });
+  }
 
-    // home btn 애니메이션
-    const homeBtn = document.querySelector(".homeBack");
+  // home btn 애니메이션
+  const homeBtn = document.querySelector(".homeBack");
+  if (homeBtn) {
     gsap.to(homeBtn, {
       scale: 1.5,
       repeat: 5,
       yoyo: true,
       duration: 0.3,
-      paused: true 
+      paused: true,
     });
-  
+
     // 요소에 마우스 호버 이벤트 리스너 추가
-    homeBtn.addEventListener("mouseenter", function() {
+    homeBtn.addEventListener("mouseenter", function () {
       gsap.to(homeBtn, { scale: 1.5, repeat: 5, yoyo: true, duration: 0.3 });
     });
+  }
 
-    // page 스크롤 애니메이션
-    const contentsHeight = document.querySelector(
-      ".pageContentsContainer"
-    ).scrollHeight;
-    const imagesHeight = document.querySelector(".allSiteImages").scrollHeight;
-    const totalHeight = contentsHeight + imagesHeight;
-
+  // page 스크롤 애니메이션
+  const contentArea = document.querySelector(".contentArea");
+  const contentsHeight = document.querySelector(
+    ".pageContentsContainer"
+  ).scrollHeight;
+  const imagesHeight = document.querySelector(".allSiteImages").scrollHeight;
+  const totalHeight = contentsHeight + imagesHeight;
+  if (contentArea) {
     const ani = gsap.timeline();
     ani
       .to(".pageContentsContainer", {
@@ -444,41 +448,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ScrollTrigger.create({
       animation: ani,
-      trigger: ".contentArea",
+      trigger: contentArea,
       start: "top top",
       end: "+=" + totalHeight,
       pin: true,
       pinSpacing: false,
       scrub: true,
+      markers: true,
     });
-
 
     // page - nav
     // intro 상단
-    const serviceIntroHeight = document.querySelector("#serviceIntro").clientHeight;
-    const serviceFeatHeight = document.querySelector("#serviceFeat").clientHeight;
-    const serviceContainerHeight = document.querySelector(".pageContentsContainer").offsetHeight;
-    console.log(serviceIntroHeight + serviceFeatHeight + 100)
-    document.getElementById("goToServiceIntro").addEventListener("click", function() {
-      gsap.to(window, {
-        duration: 0.5,
-        scrollTo: 0,
-        ease: "power1.out"
+    const serviceIntroHeight =
+      document.querySelector("#serviceIntro").clientHeight;
+    const serviceFeatHeight =
+      document.querySelector("#serviceFeat").clientHeight;
+    const serviceContainerHeight = document.querySelector(
+      ".pageContentsContainer"
+    ).offsetHeight;
+
+    document
+      .getElementById("goToServiceIntro")
+      .addEventListener("click", function () {
+        gsap.to(window, {
+          duration: 0.5,
+          scrollTo: 0,
+          ease: "power1.out",
+        });
       });
-    });
-    document.getElementById("goToServiceFeat").addEventListener("click", function() {
-      gsap.to(window, {
-        duration: 0.5,
-        scrollTo: serviceIntroHeight + 100,
-        ease: "power1.out"
+    document
+      .getElementById("goToServiceFeat")
+      .addEventListener("click", function () {
+        gsap.to(window, {
+          duration: 0.5,
+          scrollTo: serviceIntroHeight + 100,
+          ease: "power1.out",
+        });
       });
-    });
-    document.getElementById("goToGitBtn").addEventListener("click", function() {
-      gsap.to(window, {
-        duration: 0.5,
-        scrollTo: serviceIntroHeight + serviceFeatHeight + 100,
-        ease: "power1.out"
+    document
+      .getElementById("goToGitBtn")
+      .addEventListener("click", function () {
+        gsap.to(window, {
+          duration: 0.5,
+          scrollTo: serviceIntroHeight + serviceFeatHeight + 100,
+          ease: "power1.out",
+        });
       });
-    });
   }
 });

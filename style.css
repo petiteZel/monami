@@ -16,6 +16,13 @@ Version: 1.0
    font-family: 'Hahmlet', serif;
  }
 
+.gsap-marker-scroller-start, .gsap-marker-scroller-end, .gsap-marker-start, .gsap-marker-end {
+   background-color: transparent !important;
+   border-color: transparent !important;
+   color: transparent !important;
+}
+
+
 html{
    margin: 0 !important;
    width: 100vw !important;
