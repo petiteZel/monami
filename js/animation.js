@@ -225,10 +225,13 @@ document.addEventListener("DOMContentLoaded", function () {
     animateText();
 
     // projectSection------------------------------------------------------------------------------------
+    const allprojects = document.querySelector(".allprojects");
+    const pageInfos = allprojects.querySelectorAll(".pageinfo");
+    
     const projectList = document.querySelector(".projectList");
     const nextButton = projectList.querySelector(".nextBtn");
     const prevButton = projectList.querySelector(".prevBtn");
-    const pageInfos = projectList.querySelectorAll(".pageinfo");
+    
     const projectContainer = document.querySelectorAll(".projectContainer");
 
     let scrollAmount = 0; // 스크롤 이동량 초기화
@@ -240,11 +243,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // 최대 스크롤 가능 값으로 제한
       scrollAmount = Math.min(
         scrollAmount,
-        projectList.scrollWidth - projectList.clientWidth
+        allprojects.scrollWidth - allprojects.clientWidth
       );
+      console.log(scrollAmount);
 
       // 스크롤 애니메이션 실행
-      projectList.scrollTo({
+      allprojects.scrollTo({
         left: scrollAmount,
         behavior: "smooth", // 부드러운 스크롤 효과
       });
@@ -257,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
       scrollAmount = Math.max(scrollAmount, 0);
 
       // 스크롤 애니메이션 실행
-      projectList.scrollTo({
+      allprojects.scrollTo({
         left: scrollAmount,
         behavior: "smooth", // 부드러운 스크롤 효과
       });
@@ -309,7 +313,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const contentArea = document.querySelector(".contentArea");
 
   if (contentArea) {
-
     // 무드 버튼 회전
     const moveBtnTl = gsap.timeline();
     const moveBtn = document.querySelector("#moodBtn");
@@ -465,13 +468,13 @@ document.addEventListener("DOMContentLoaded", function () {
       allSiteImages.addEventListener("mouseleave", () => {
         imgSideBySideTl.resume(); // 마우스가 요소를 떠났을 때 애니메이션 재개
       });
-      
+
       const serviceIntroHeight =
         document.querySelector("#serviceIntro").clientHeight;
       const serviceFeatHeight =
         document.querySelector("#serviceFeat").clientHeight;
-      
-        ScrollTrigger.create({
+
+      ScrollTrigger.create({
         trigger: contentArea,
         start: "top top",
         end: "+=" + serviceIntroHeight + serviceFeatHeight + 100,
@@ -483,7 +486,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // page - nav
       // intro 상단
-  
+
       document
         .getElementById("goToServiceIntro")
         .addEventListener("click", function () {
@@ -511,15 +514,17 @@ document.addEventListener("DOMContentLoaded", function () {
             ease: "power1.out",
           });
         });
-    }else{//pc의 경우
+    } else {
+      //pc의 경우
 
       // page 스크롤 애니메이션
       const contentsHeight = document.querySelector(
         ".pageContentsContainer"
       ).scrollHeight;
-      const imagesHeight = document.querySelector(".allSiteImages").scrollHeight;
+      const imagesHeight =
+        document.querySelector(".allSiteImages").scrollHeight;
       const totalHeight = contentsHeight + imagesHeight;
-  
+
       const ani = gsap.timeline();
       ani
         .to(".pageContentsContainer", {
@@ -528,7 +533,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .to(".allSiteImages", {
           scrollTo: { y: imagesHeight, autoKill: false },
         });
-  
+
       ScrollTrigger.create({
         animation: ani,
         trigger: contentArea,
@@ -539,7 +544,7 @@ document.addEventListener("DOMContentLoaded", function () {
         scrub: true,
         markers: true,
       });
-  
+
       // page - nav
       // intro 상단
       const serviceIntroHeight =
@@ -549,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const serviceContainerHeight = document.querySelector(
         ".pageContentsContainer"
       ).offsetHeight;
-  
+
       document
         .getElementById("goToServiceIntro")
         .addEventListener("click", function () {

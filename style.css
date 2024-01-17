@@ -282,6 +282,7 @@ section#projectSection .contentsTitle .git{
 }
 
 section#projectSection .projectList{
+   position: relative;
    width: 80%;
    height: 100%;
    margin: 0 50px;
@@ -303,9 +304,15 @@ section#projectSection .projectList .carousel-button i{
 }
 
 section#projectSection .projectList .carousel-button.nextBtn{
-   right: 90px;
+   right: 0px;
 }
 
+section#projectSection .projectList .allprojects{
+   position: absolute;
+   height: 100%;
+   display: flex;
+   overflow-x: hidden;
+}
 section#projectSection .projectList .projectContainer{
    min-width: 100%;
    height: 100%;

@@ -41,7 +41,7 @@ get_header('home');
         <div class="contents show">
             <div class="contentsTitle">안녕하세요!</br></div>
             <div class="contentsText">
-                <p style="font-size: x-large;">새로운 지식을 배우는 것을 좋아하고, 코딩이 즐거운</br>
+                <p>새로운 지식을 배우는 것을 좋아하고, 코딩이 즐거운</br>
                 <span style="border-radius: 3px;background-color:#ffc0cbb8;font-weight:900;">Front-End 개발자</span> 최승연입니다. </p>
             </div>
             <button class="moreBtn">
@@ -140,6 +140,7 @@ get_header('home');
     <!--  -->
     <div class="projectList">
         <button class="carousel-button prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="allprojects">
         <?php
         // $args = 
 
@@ -189,6 +190,7 @@ get_header('home');
             echo '<p>No pages found.</p>';
         }
         ?>
+        </div>
         <button class="carousel-button nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 

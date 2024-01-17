@@ -8,6 +8,9 @@ Version: 1.1
 
 @media screen and (max-width: 600px){
 
+    header{
+        position: absolute;
+    }
     header .headerContainer{
         flex-direction: column;
     }
@@ -15,7 +18,7 @@ Version: 1.1
         height: 50%;
     }
     header div.menu{
-        width: 50%;
+        width: 60%;
     }
     header div.menu>div{
         width: 100%;
@@ -25,11 +28,26 @@ Version: 1.1
         padding: 0px;
     }
 
+    section#homeSection .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    section#homeSection .container p{
+        font-size: 40px;
+        margin: 0;
+    }
     section#introSection{
         flex-direction: column;
         justify-content: center;
         height: 100vh;
         width: 100vw;
+        overflow-x:clip;
+    }
+    section#introSection .mypicture{
+        display: none;
+        width: 200px;
+        height: 200px;
     }
     section#introSection .contentsList{
         height: 50%;
@@ -38,16 +56,24 @@ Version: 1.1
 
     section#introSection .contents .contentsTitle{
         width: 100%;
+        font-size: xx-large;
+    }
+    section#introSection .contents .contentsText {
+        font-size: 14px;
     }
 
     section#projectSection{
         flex-direction: column;
         justify-content: center;
+        padding: 20px;
     }
     section#projectSection .contentsTitle{
         width: 100%;
-        margin-bottom:100px;
+        height: 50%;
         text-align: center;
+    }
+    section#projectSection .contentsTitle > p:first-of-type{
+        display: none;
     }
 
     section#projectSection .projectList{
@@ -56,14 +82,13 @@ Version: 1.1
         height: 30%;
     }
 
+
     section#projectSection .projectList .carousel-button{
-        top:65%;
-    }
-    section#projectSection .projectList .carousel-button.prevBtn{
-        left: 30px;
+        position: sticky;
+        top:25%;
     }
     section#projectSection .projectList .carousel-button.nextBtn{
-        right: 30px;
+        left: 1000px;
     }
 
     /* page.php */
