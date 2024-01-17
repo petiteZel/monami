@@ -29,7 +29,7 @@ add_action('after_setup_theme', 'my_theme_setup');
 function set_style_sheet()
 {
     wp_enqueue_style('monami_style', get_stylesheet_directory_uri() . '/style.css');
-    wp_enqueue_style('monami_style', get_stylesheet_directory_uri() . '/style_mobile.css');
+    wp_enqueue_style('monami_mobile_style', get_stylesheet_directory_uri() . '/style_mobile.css');
 };
 add_action('wp_enqueue_scripts', 'set_style_sheet');
 

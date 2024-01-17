@@ -292,11 +292,11 @@ section#projectSection .projectList{
 }
 section#projectSection .projectList .carousel-button{
    position: absolute;
-    top: 43%;
-    border: none;
-    background: rgb(0, 0, 0, 0.5);
-    color: white;
-    z-index: 2;
+   top: 43%;
+   border: none;
+   background: rgb(0, 0, 0, 0.5);
+   color: white;
+   z-index: 2;
 }
 section#projectSection .projectList .carousel-button i{
    font-size: xxx-large;

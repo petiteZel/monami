@@ -6,6 +6,148 @@ Description: portfolio site (monami style)
 Version: 1.0
 */
 
-@media screen {
+@media screen and (max-width: 600px){
+
+    header .headerContainer{
+        flex-direction: column;
+    }
+    header .logo{
+        height: 50%;
+    }
+    header div.menu{
+        width: 50%;
+    }
+    header div.menu>div{
+        width: 100%;
+    }
+    header div.menu>div>ul{
+        width: 100%;
+        padding: 0px;
+    }
+
+    section#introSection{
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    section#introSection .contentsList{
+        height: 50%;
+        width: 90%;
+    }
+
+    section#introSection .contents .contentsTitle{
+        width: 100%;
+    }
+
+    section#projectSection{
+        flex-direction: column;
+        justify-content: center;
+    }
+    section#projectSection .contentsTitle{
+        width: 100%;
+        margin-bottom:100px;
+        text-align: center;
+    }
+
+    section#projectSection .projectList{
+        margin: 0px;
+        width: 100%;
+        height: 30%;
+    }
+
+    section#projectSection .projectList .carousel-button{
+        top:65%;
+    }
+    section#projectSection .projectList .carousel-button.prevBtn{
+        left: 30px;
+    }
+    section#projectSection .projectList .carousel-button.nextBtn{
+        right: 30px;
+    }
+
+    /* page.php */
+    .pageTitle{
+        width: 100%;
+    }
+    .pageTitle .headerContainer{
+        flex-direction: row;
+    }
+
+    .contentArea{
+        overflow-x: hidden;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .contentArea .pageNav{
+        right: auto;
+        top: 55%;
+        width: 50%;
+    }
+    .contentArea .siteMain{
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+
+    .contentArea .siteMain .allSiteImages{
+        width: 100%;
+        height: 35%;
+        flex-direction: row;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+    .contentArea .siteMain .allSiteImages>div{
+        flex-direction: row;
+        justify-content: start;
+    }
+    .contentArea .siteMain .allSiteImages .wp-block-video.mainVideo{
+        margin: 0px;
+        height: 100% !important;
+    }
+    .contentArea .siteMain .allSiteImages .wp-block-video.mainVideo video{
+        width: 84.6vw;
+    }
+    .contentArea .siteMain .allSiteImages .wp-block-gallery{
+        width: auto;
+        flex-direction: row;
+        justify-content: start;
+        flex-wrap: nowrap;
+        height: 100% !important;
+        margin: 0;
+        gap: 0;
+    }
+    .contentArea .siteMain .allSiteImages .wp-block-gallery .wp-block-image{
+        width: 90vw !important;
+        height: 100% !important;
+    }
     
+    
+    .contentArea .siteMain .pageContentsContainer{
+        width: 100%;
+        height: 35%;
+        flex-direction: row;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+    .contentArea .siteMain .pageContentsContainer #serviceIntro{
+        margin-top: 10%;
+    }
 }
+    .btnCase{
+        position: static;
+        margin: 0;
+    }
+    .homeBack{
+        top: auto;
+        bottom: 30px;
+        z-index: 3;
+    }
+    #moodBoard>div figure{
+        flex-direction: column;
+    }
+    #moodBoard>div figure figcaption{
+        width: 300px;
+    }

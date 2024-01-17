@@ -128,8 +128,8 @@ get_header('home');
             대부분의 프로젝트들은 교육 기관에서 제공한 서버를 통해 배포되었기 때문에 현재 실제로 운영되는 페이지는 존재하지 않습니다.
             하지만, 프로젝트의 코드와 세부 내용은 GitHub에서 확인하실 수 있습니다.
         </p>
-        <p>Email: csykik@naver.com</p>
-        <p>phone: 010-4931-0660</p>
+        <p><i class="fas fa-envelope"></i> Email: csykik@naver.com</p>
+        <p><i class="fas fa-phone"></i> phone: 010-4931-0660</p>
         <div class="git" onclick="location.href='https://github.com/petiteZel'"><i class="fa-brands fa-github"></i>
             <h3>petiteZel</h3>
         </div>
